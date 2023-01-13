@@ -1,0 +1,4 @@
+type EmployeesQuery {
+  employee(id: Int!): Employee
+  employees(limit: Int = 30, after: Int): PaginatedEmployees!
+}

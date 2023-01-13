@@ -1,0 +1,4 @@
+type PaginatedEmployees implements PaginatedResults {
+  totalCount: Int!
+  employees: [Employee!]!
+}

@@ -1,0 +1,3 @@
+type EmployeesMutation {
+  employee(id: Int!): EmployeeMutation
+}
