@@ -1,3 +1,5 @@
 type Employee {
   id: Int!
+  firstName: String!
+  lastName: String!
 }

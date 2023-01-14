@@ -6,8 +6,8 @@ import PublicGraphQL from './public.js';
 
 const router = express.Router();
 
-export default (modules) => {
-  const publicGraphQL = PublicGraphQL(modules);
+export default async (modules) => {
+  const publicGraphQL = await PublicGraphQL(modules);
 
   const executableSchema = makeExecutableSchema({ typeDefs: publicGraphQL.schema, resolvers: publicGraphQL.resolverMap });
   const graphQLMiddleware = graphqlHTTP({

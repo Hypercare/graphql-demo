@@ -7,7 +7,7 @@ const router = express.Router();
 
 export default async (modules) => {
   const bootstrap = BootstrapFactory(modules);
-  const graphQLRouter = GraphQLRouter(modules);
+  const graphQLRouter = await GraphQLRouter(modules);
 
   router.use(bootstrap.load);
 
