@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import BaseDAO from './base.js';
 
 import EmployeeDTO from './models/employee_dto.js';
@@ -23,6 +25,17 @@ class EmployeeDAO extends BaseDAO {
       .where('emp_no', employeeId);
     
     return createEmployeeDTO(employee);
+  }
+
+  async getPaginatedEmployees(continuationId, limit, trx) {
+    const employeesQuery = trx('employees').select('emp_no as id');
+
+    if (continuationId) employeesQuery.where('emp_no', '>', continuationId);
+    if (limit) employeesQuery.limit(limit);
+
+    const employees = await employeesQuery.orderBy('last_name', 'asc');
+
+    return _.map(employees, e => e.id);
   }
 }
 

@@ -12,6 +12,14 @@ class Employee extends BaseService {
 
     return employee
   }
+
+  async getPaginatedEmployees(continuationId, limit) {
+    const employeeIds = await this.request.sessionData.getReadConnection()(cxn =>
+      this.#db.employeeDAO.getPaginatedEmployees(continuationId, limit, cxn)
+    );
+
+    return employeeIds;
+  }
 }
 
 export default Employee;

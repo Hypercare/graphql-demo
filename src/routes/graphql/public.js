@@ -18,10 +18,13 @@ export default async (modules) => {
 
   const EmployeeQueryResolver = (await import(`./resolvers/queries/employee_query.js`)).default(modules);
 
+  const PaginatedEmployeesResolver = (await import('./resolvers/queries/paginated_employees.js')).default(modules);
+
   const resolverMap = {
     RootQuery: RootQueryResolver,
     EmployeesQuery: EmployeesQueryResolver,
-    Employee: EmployeeQueryResolver
+    Employee: EmployeeQueryResolver,
+    PaginatedEmployees: PaginatedEmployeesResolver
   };
 
   return {

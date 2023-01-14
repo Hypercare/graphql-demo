@@ -6,5 +6,19 @@ export default (modules) => {
     return { id: employee.id };
   }
 
-  return { employee };
+  async function employees(obj, { limit, after }, context) {
+    const employeeIds = await context.sessionData.services.employee.getPaginatedEmployees(
+      after,
+      limit
+    );
+
+    return {
+      ids: employeeIds
+    };
+  }
+
+  return {
+    employee,
+    employees
+  };
 }
